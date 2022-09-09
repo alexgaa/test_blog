@@ -65,10 +65,16 @@
     </head>
     <body>
         <div class="flex-center position-ref full-height">
-            @if (Route::has('login'))
-                <div class="top-right links">
+            <div class="top-right links">
+                @if(session()->has('status'))
+                    <div class="alert alert-success">
+                        {{session('status') }}
+                    </div>
+                 @endif
+                @if (Route::has('login'))
+
                     @auth
-                        <a href="{{ url('/home') }}">Home</a>
+                        <a href="{{route('loguot')}}" class="btn-sm  btn-info">Logout</a>
                     @else
                         <a href="{{ route('login') }}">Login</a>
 
@@ -76,9 +82,9 @@
                             <a href="{{ route('register') }}">Register</a>
                         @endif
                     @endauth
-                </div>
-            @endif
 
+                @endif
+            </div>
             <div class="content">
                 <div class="title m-b-md">
                     Laravel
